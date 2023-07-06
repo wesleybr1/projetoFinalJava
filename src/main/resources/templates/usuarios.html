@@ -1,0 +1,104 @@
+<!Doctype html>
+
+<html lang="PT-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+		<title>Usuários</title>
+		
+		<!-- Link do phosphosIcon  -->
+		<script src="https://unpkg.com/@phosphor-icons/web"></script>
+	</head>
+	<body>
+	  
+	<header style="background-color: #C8D4DD;">
+	<footer style="text-align:  center; padding: 10px 0px; margin-bottom: 5px; width: 1160px; margin: 0 auto">
+		<nav class="navbar navbar-expand-lg bg-body-tertiary; width: 1160px; margin: 0 auto; display: flex ">
+		  <div class="container-fluid; width: 1160px; margin: 0 auto">
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <!-- color link #1C3C50 -->
+		    <div class="collapse navbar-collapse width: 1160px" id="navbarNav">
+		      <ul class="navbar-nav display: flex gap: 16px width: 100% " style="gap: 8px; font-weight: bold;">
+		        <!-- Borda de um 1px na tag <a> -->
+		        <li class="nav-item; border border-primary rounded background-color list-group-item">
+		          <a class="nav-link" aria-current="page" href="/pagina_inicial"style="color: #1C3C50 ">Inicio</a>
+		        </li>
+		        <li class="nav-item; border border-primary rounded background-color list-group-item">
+		          <a class="nav-link active" href="/usuario"style="color: #1C3C50">Usuários</a>
+		        </li>
+		        <li class="nav-item; border border-primary rounded background-color list-group-item">
+		          <a class="nav-link" href="/cadastro"style="color: #1C3C50">Cadastrar Usuários</a>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+		</footer>
+	</header>
+	
+	<!-- Criando uma nova div para a linhar os elementos na pagina   -->
+ 	<!-- Margin 0 nos topos e automatico nas laterais   -->
+	  
+	<div style="width: 1114px; margin: 0 auto;">  
+    <h1 style="color: #1C3C50;">Lista de Usuários</h1><!-- color h1   -->
+   
+        <div class="container">
+             <div class="card" th:each="usuario : ${usuarios}" style="margin: 15px 0px; height: 60%;">
+                 <div class="card-header" style="font-weight: 700; color: #1C3C50;">Usuário</div> <!-- Font bold | Color   -->
+                 <div class="card-body">
+                   <div class="row">
+                      <!-- disply flex e justify-content: space-between para espaçar a mesma margin cara cada div filho -->
+          			  <!-- Altura de 116px -->
+                          <div class="" style = " display: flex;
+									              justify-content: space-between;
+									              flex-direction: column;
+									              height: 116px;">
+                              <div>
+                                  Nome: <span th:text="${usuario.nome}"></span>
+                              </div>
+                              <div>
+                                  Altura: <span th:text="${usuario.altura}"></span>
+                              </div>
+                             
+                              <div>
+                                  Idade: <span th:text="${usuario.idade}"></span>
+                              </div>
+                          </div>
+                        </div>
+                 	 </div>
+                 
+                 
+                  <div class="" style="padding: 16px;">
+                      <div class="col">
+                          <a th:href="@{/editar/{id}(id=${usuario.id})}" href="#" class="btn btn-info"> <i class="ph ph-pencil"> </i> <!-- Icone de lapis --> Editar </a>
+                          <button data-bs-toggle="modal" class="btn btn-secondary" th:attr="data-bs-target='#modalExcluir' + ${usuario.id}"> <i class="ph ph-trash"> </i> <!-- Icone de Lixeira --> Excluir </button>
+                      </div>
+                  </div>
+                 
+                 
+                <!-- modal confirmação exclusão produto -->
+                <div class="modal" tabindex="-1" th:attr="id='modalExcluir'+${usuario.id}">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Excluir usuário?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Deseja realmente excluir o usuário: <strong><span th:text="${usuario.nome}"></span></strong> ?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <a th:href="@{/delete/{id}(id=${usuario.id})}" href="#" type="button" class="btn btn-success">Confirmar</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>            
+        </div>
+    </body>
+
+</html>

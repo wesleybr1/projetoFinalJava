@@ -1,0 +1,75 @@
+<!Doctype html>
+
+<html lang="PT-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+		<title>Cadastrar Usuários</title>
+	</head>
+	
+	<body>
+	<!-- background color #C8D4DD -->
+		<header style="background-color: #C8D4DD;">
+		<footer style="text-align:  center; padding: 10px 0px; margin-bottom: 5px; width: 1160px; margin: 0 auto">
+			<nav class="navbar navbar-expand-lg bg-body-tertiary; width: 1160px; margin: 0 auto; display: flex ">
+			  <div class="container-fluid; width: 1160px; margin: 0 auto">
+			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			      <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <!-- color link #1C3C50 -->
+			    <div class="collapse navbar-collapse width: 1160px" id="navbarNav">			   
+			      <ul class="navbar-nav display: flex gap: 16px width: 100% " style="gap: 8px; font-weight: bold;">
+			        <li class="nav-item; border border-primary rounded background-color list-group-item">
+			          <a class="nav-link" aria-current="page" href="/pagina_inicial" style="color: #1C3C50 ">Inicio</a>
+			        </li>
+			        <li class="nav-item; border border-primary rounded background-color list-group-item">
+			          <a class="nav-link" href="/usuario" style="color: #1C3C50">Usuários</a>
+			        </li>
+			        <li class="nav-item; border border-primary rounded background-color list-group-item">
+			          <a class="nav-link active" href="/cadastro" style="color: #1C3C50">Cadastrar Usuários</a>
+			        </li>
+			      </ul>			      
+			    </div>
+			  </div>
+			</nav>
+			</footer>
+		</header>
+		
+		<!-- Criando uma nova div para a linhar os elementos na pagina | margin top de 36px  -->
+		<div style="width: 1114px; margin: 0 auto; margin-top: 36px;">
+			<!-- Color h1 | Margin botton de 16px -->
+		<h1 style="margin: 0 auto; width: 1160px; color: #1C3C50; margin-bottom: 16px;">Cadastrar Usuário</h1>
+	
+		<div class="container">
+		<!-- Display flex para os elementos ficarem um ao lado do outro | Gap 12px para espaçar os elementos  -->
+  		<form action="#" th:action="@{adicionarUsuario}" th:object="${usuario}" method="POST" style="display: flex; gap: 12px">
+  		
+  		<!-- name placeholder input -->
+		<!-- Retirada do margin botton -->
+  			<div class="">
+			  <label for="nome" class="form-label" style="font-weight: bold;">Nome</label>
+			  <input placeholder="nome" type="text" class="form-control" id="nome" th:field="*{nome}">
+			  <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"> </span>
+			</div>
+			
+			<div class="">
+			  <label for="altura" class="form-label" style="font-weight: bold;">Altura</label>
+			  <input placeholder="altura" type="number" step="0.01" class="form-control" id="altura" th:field="*{altura}">
+			  <span th:if="${#fields.hasErrors('altura')}" th:errors="*{altura}"> </span>
+			</div>
+			
+			<div class="">
+			  <label for="idade" class="form-label" style="font-weight: bold;">Idade</label>
+			  <input placeholder="idade" type="number" class="form-control" id="idade" th:field="*{idade}">
+			  <span th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"> </span>
+			</div>
+			
+			<!-- Altura do button de 36px | Margin top auto para o ficar na base da div | Margin left 16px-->
+			<button type="submit" class="btn btn-info" style="height: 36px; margin-top: auto; margin-left: 16px;"> Cadastrar </button>
+  		</form>
+		</div>
+		</div>
+	</body>
+
+</html>
